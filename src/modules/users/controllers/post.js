@@ -14,8 +14,6 @@ const AddUsers = async (req, res) => {
         const deletePassword = addUser.toObject();
         delete deletePassword.password;
         let token = jwt.sign({ email: addUser.email }, process.env.JWT_SECURITY_KEY);
-        console.log(token);
-
         res.status(200).send({ status: 200, message: 'user added successfully', user: deletePassword, token });
     } catch (error) {
         res.status(400).send({ status: 400, message: error.message });

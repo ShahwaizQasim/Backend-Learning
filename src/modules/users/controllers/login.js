@@ -18,8 +18,6 @@ const LoginUsers = async (req, res) => {
         } else {
             res.status(404).send({ status: 404, message: 'User Not Found' });
         }
-        console.log(token);
-
     } catch (error) {
         res.status(500).send({ status: 500, message: error.message });
     }
