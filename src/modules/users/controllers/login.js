@@ -11,7 +11,7 @@ const LoginUsers = async (req, res) => {
             const checkPassword = bcrypt.compareSync(password, user.password);
             if (checkPassword) {
                 let token = jwt.sign({ email: user.email }, process.env.JWT_SECURITY_KEY);
-                res.status(200).send({ status: 200, message: 'user login successfully', token: token });
+                res.status(200).send({ status: 200, message: 'user login successfully', data: user, token: token });
             } else {
                 res.status(401).send({ status: 401, message: 'Incorrect Password' });
             }
