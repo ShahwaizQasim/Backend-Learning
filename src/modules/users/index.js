@@ -5,14 +5,14 @@ import LoginUsers from "./controllers/login.js";
 import deleteUser from "./controllers/deleteUser.js";
 import updateUser from "./controllers/updateUser.js";
 import FindUser from "./controllers/findUser.js";
-import AuthenticationUser from "../../config/authentication.js";
+import { AuthenticationUsers, VerifyUser } from "../../config/authentication.js";
 
 const userRoutes = Router()
 
 userRoutes.post('/login', LoginUsers)
 userRoutes.post('/', AddUsers)
-userRoutes.get('/', AuthenticationUser, getUsers)
-userRoutes.get('/UserInfo', AuthenticationUser, FindUser)
+userRoutes.get('/', AuthenticationUsers, getUsers)
+userRoutes.get('/UserInfo', VerifyUser, FindUser)
 userRoutes.delete('/:id', deleteUser)
 userRoutes.put('/:id', updateUser)
 

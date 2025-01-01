@@ -2,12 +2,14 @@ import UserModel from '../models/index.js'
 
 const FindUser = async (req, res) => {
     try {
-        const user = UserModel.findOne({
+        const user = await UserModel.findOne({
             _id: req.user._id,
         })
+        console.log("user in function", user);
+        
         res.status(200).send({ status: 200, error: false, user })
     } catch (error) {
-        res.status(400).send({ status: 400, error: error })
+        res.status(400).send({ status: 400, error: "error in functions" })
 
     }
 }

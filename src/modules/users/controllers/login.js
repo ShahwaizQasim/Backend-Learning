@@ -10,7 +10,7 @@ const LoginUsers = async (req, res) => {
         if (user) {
             const checkPassword = bcrypt.compareSync(password, user.password);
             if (checkPassword) {
-                let token = jwt.sign({ email: user.email }, process.env.JWT_SECURITY_KEY);
+                let token = jwt.sign({ _id: user._id, email: user.email }, process.env.JWT_SECURITY_KEY);
                 res.status(200).send({ status: 200, message: 'user login successfully', data: user, token: token });
             } else {
                 res.status(401).send({ status: 401, message: 'Incorrect Password' });
@@ -19,7 +19,8 @@ const LoginUsers = async (req, res) => {
             res.status(404).send({ status: 404, message: 'User Not Found' });
         }
     } catch (error) {
-        res.status(500).send({ status: 500, message: error.message });
+        console.log(error);
+        res.status(500).send({ status: 500, message: 'something went wrong', error: error });
     }
 }
 
