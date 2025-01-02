@@ -44,27 +44,26 @@ const VerifyUser = async (req, res, next) => {
     }
 }
 
-// const AuthenticationAdmin = async (req, res, next) => {
-//     try {
-//         if (req?.headers?.authorization) {
-//             const token = req?.headers?.authorization.split(" ")[1];
-//             if (!token) {
-//                 res.status(404).send({ status: 404, message: "Token Not Provided" });
-//             }
-//             const decoded = jwt.verify(token, process.env.JWT_SECURITY_KEY);
-//             if (decoded) {
-//                 // req.user = user;
-//                 console.log("AuthenticationAdmin Decoded Role", decoded.role == "Admin");
-//                 next();
-//             } else {
-//                 res.status(401).send({ status: 401, message: 'Unauthorized Token', });
-//             }
-//         } else {
-//             res.status(404).send({ status: 404, message: 'User Not Found', });
-//         }
-//     } catch (error) {
-//         res.status(500).send({ status: 500, message: 'error in authentication' });
-//     }
-// }
+const AuthenticationAdmin = async (req, res, next) => {
+    try {
+        if (req?.headers?.authorization) {
+            const token = req?.headers?.authorization.split(" ")[1];
+            if (!token) {
+                res.status(404).send({ status: 404, message: "Token Not Provided" });
+            }
+            const decoded = jwt.verify(token, process.env.JWT_SECURITY_KEY);
+            if (decoded && decoded.role == "admin") {
+                // console.log("AuthenticationAdmin Decoded Role=>", decoded.role);
+                next();
+            } else {
+                res.status(400).send({ status: 400, message: 'Admin Only Allow to Access', });
+            }
+        } else {
+            res.status(404).send({ status: 404, message: 'User Not Found', });
+        }
+    } catch (error) {
+        res.status(500).send({ status: 500, message: 'error in authentication' });
+    }
+}
 
-export { AuthenticationUsers, VerifyUser };
+export { AuthenticationUsers, VerifyUser, AuthenticationAdmin };

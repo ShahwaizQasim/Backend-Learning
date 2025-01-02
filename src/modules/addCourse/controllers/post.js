@@ -6,7 +6,8 @@ const addCourse = async (req, res) => {
         addCourse = await addCourse.save();
         res.status(200).send({ status: 200, message: "course added successfully", course: addCourse })
     } catch (error) {
-        res.status(400).send({ status: 400, message: error, course: addCourse })
+        console.log("error in addCourse Controllers", error);
+        res.status(400).send({ status: 400, message: `${error} in addCourse Controllers` })
     }
 }
 
