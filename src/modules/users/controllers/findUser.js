@@ -5,8 +5,6 @@ const FindUser = async (req, res) => {
         const user = await UserModel.findOne({
             _id: req.user._id,
         })
-        console.log("user in function", user);
-        
         res.status(200).send({ status: 200, error: false, user })
     } catch (error) {
         res.status(400).send({ status: 400, error: "error in functions" })
