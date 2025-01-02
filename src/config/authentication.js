@@ -52,8 +52,7 @@ const AuthenticationAdmin = async (req, res, next) => {
                 res.status(404).send({ status: 404, message: "Token Not Provided" });
             }
             const decoded = jwt.verify(token, process.env.JWT_SECURITY_KEY);
-            if (decoded && decoded.role == "admin") {
-                // console.log("AuthenticationAdmin Decoded Role=>", decoded.role);
+            if (decoded.role == "admin") {
                 next();
             } else {
                 res.status(400).send({ status: 400, message: 'Admin Only Allow to Access', });

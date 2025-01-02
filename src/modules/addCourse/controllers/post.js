@@ -1,6 +1,6 @@
 import CourseModel from "../models/courseModel.js";
 
-const addCourse = async (req, res) => {
+const AddCourse = async (req, res) => {
     try {
         let addCourse = await CourseModel(req.body);
         addCourse = await addCourse.save();
@@ -11,4 +11,4 @@ const addCourse = async (req, res) => {
     }
 }
 
-export default addCourse;
+export default AddCourse;
