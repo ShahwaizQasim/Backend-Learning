@@ -1,7 +1,7 @@
 import CourseModel from "../models/courseModel.js"
 
 
-const DeleteUser = async (req, res) => {
+const CourseDelete = async (req, res) => {
     try {
         const { id } = req.params;
         const CourseDelete = await CourseModel.findByIdAndDelete(id)
@@ -11,4 +11,4 @@ const DeleteUser = async (req, res) => {
     }
 }
 
-export default DeleteUser;
+export default CourseDelete;
