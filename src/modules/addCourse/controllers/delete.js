@@ -3,7 +3,7 @@ import CourseModel from "../models/courseModel.js"
 
 const DeleteUser = async (req, res) => {
     try {
-        const { id } = req.params();
+        const { id } = req.params;
         const CourseDelete = await CourseModel.findByIdAndDelete(id)
         res.status(200).send({ status: 200, message: "course deleted successfully" });
     } catch (error) {
