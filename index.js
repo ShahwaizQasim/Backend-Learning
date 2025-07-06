@@ -5,6 +5,7 @@ import router from "./src/routes/index.js";
 import helmet from "helmet"
 import ConnectDB from "./src/db/index.js";
 import cors from 'cors' 
+import  { swaggerUi, swaggerSpec } from "./swagger.js"
 
 const app = express();
 
@@ -19,7 +20,7 @@ app.get('/', (req, res) => {
 ConnectDB();
 
 app.use('/api', router);
-
+app.use("/api/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 app.listen(ENV.PORT, () => {
     console.log("Server Running");
